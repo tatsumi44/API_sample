@@ -13,7 +13,7 @@ $(".api").on('click',function () {
             var json = base_json
             console.log(json)
             var parsed_json = JSON.parse(json)
-            console.log(parsed_json["0"])
+            console.log(parsed_json[0]["name"])
             // var next_name = json["next"]
             // console.log(next_name)
             // $(".next_name").text(next_name)

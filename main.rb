@@ -34,7 +34,6 @@ get '/news' do
   #最後の日にちを変更すればいい感じに
   url = "https://news.goo.ne.jp/topstories/backnumber/politics/2018#{params[:date]}/"
   html = open(url).read
-
   parsed_html = Nokogiri::HTML.parse(html,nil,'utf-8')
   i = 0
   hash_array = Array.new
@@ -50,7 +49,8 @@ get '/news' do
     i += 1
   end
   puts hash_array
+  content_type :json
   json_array =  JSON.generate(hash_array)
   puts json_array
-  json json_array
+  json_array.to_json
 end
