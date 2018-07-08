@@ -37,7 +37,7 @@ get '/news' do
 
   parsed_html = Nokogiri::HTML.parse(html,nil,'utf-8')
   i = 0
-  hash_array = Hash.new
+  hash_array = Array.new
   parsed_html.css('ul.gn-news-list > li').each do |node|
     contents_hash = Hash.new
     news_url = "https://news.goo.ne.jp#{node.css('a').attribute('href').value}"
@@ -46,7 +46,7 @@ get '/news' do
     contents_hash["url"] = "https://news.goo.ne.jp#{node.css('a').attribute('href').value}"
     contents_hash["name"] = "#{node.css('a').css('p.list-title-topics').inner_text}"
     contents_hash["date"] = "#{node.css('a').css('p.list-news-source').inner_text}"
-    hash_array[i] = contents_hash
+    hash_array.push(contents_hash)
     i += 1
   end
   puts hash_array
